@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>M.P ARTS TUTORIAL</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style> 
+        * { padding: 0; margin: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #f4f4f4; overflow-x: hidden; }
+
+        .tab1 { background: #333; color: white; padding: 40px 20px; }
+        .header-top { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+        .header-top img { border-radius: 50%; object-fit: cover; border: 3px solid #d9e31a; }
+        .tab1 h1 { font-size: clamp(1.5rem, 5vw, 2.8rem); }
+        .tab1 p { color: #d9e31a; font-size: 1.1rem; max-width: 800px; margin-bottom: 10px; }
+
+        .tab2 { display: flex; overflow-x: auto; gap: 15px; padding: 20px; background: #eee; scroll-snap-type: x mandatory; }
+        .tab2 img { min-width: 300px; height: 400px; object-fit: cover; border-radius: 10px; scroll-snap-align: start; }
+
+        .warning { padding: 20px; background: #444; color: #ffeb3b; font-size: 1rem; text-align: center; }
+
+        .tab3 { padding: 50px 20px; text-align: center; }
+        .tab3 h1 { font-size: clamp(2rem, 8vw, 3.5rem); color: #444; margin-bottom: 10px; }
+        .click-note { color: #666; font-size: 0.9rem; margin-bottom: 20px; font-style: italic; }
+        .tab3 ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; list-style: none; margin-top: 20px; }
+        .tab3 li { border: 2px solid #333; padding: 10px 25px; font-weight: 600; transition: 0.3s; cursor: pointer; }
+        .tab3 li:hover { background: #333; color: #d9e31a; }
+
+        .tab4 ul { list-style: none; padding: 40px 20px; display: flex; overflow-x: auto; gap: 15px; }
+        .tab4 li { min-width: 180px; border: 1px solid #ddd; background: white; padding: 20px; text-align: center; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+        .tab4 li:hover { transform: translateY(-5px); border-color: #d9e31a; }
+
+        .tab5 { padding: 40px 20px; max-width: 800px; margin: 0 auto 20px; background: white; border-radius: 10px; }
+        .tab5 textarea { width: 100%; height: 120px; padding: 15px; border-radius: 8px; border: 1px solid #ccc; resize: none; font-size: 1rem; }
+        .tab5 button { margin-top: 15px; padding: 12px 30px; font-size: 1rem; color: white; background-color: #333; border: none; border-radius: 7px; cursor: pointer; }
+        .tab5 button:hover { background-color: #3fcd42; color: #fff; }
+
+        .reviews-display-tab { padding: 40px 20px; max-width: 800px; margin: 0 auto 50px; }
+        .review-card { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: relative; }
+        .review-card .user-name { font-weight: 700; color: #555; font-size: 0.9rem; margin-bottom: 5px; display: block; }
+
+        .tab6 { background: #222; display: flex; flex-direction: column; align-items: center; padding: 50px 20px 20px; color: white; gap: 30px; }
+        .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
+        .tab6 a { color: white; text-decoration: none; }
+        .tab6 i { font-size: 2rem; margin-top: 10px; display: block; text-align: center; }
+        .visitor-counter { font-size: 12px; opacity: 0.6; border-top: 1px solid #444; padding-top: 20px; width: 100%; text-align: center; }
+        .review-card .delete-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #ff4444;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.delete-btn {
+    display: none; /* Hidden by default */
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #ff4444;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    background: #fff0f0;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+/* This class will be added by JS only if the user owns the review */
+.is-owner {
+    display: block !important;
+}
+/* Styling for the Admin tag */
+.admin-badge {
+    background: #d9e31a;
+    color: #333;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Ensure the delete button shows for Admins too */
+.is-admin .delete-btn {
+    display: block !important;
+    background: #333 !important;
+    color: #fff !important;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="tab1">
+    <div class="header-top">
+        <img src="6.png" alt="Logo" height="100" width="100">
+        <h1>M.P ARTS TUTORIAL</h1>
+    </div>
+    <p><strong>Note:</strong> These are shared to help beginners. Practice makes perfect!</p>
+    <p>Topics: Hands, Head, Clothes, Anatomy, Color, and more.</p>
+</div>
+
+<div class="tab2">
+    <img src="./1.png" alt="1"><img src="./2.png" alt="2">
+    <img src="./3.png" alt="3"><img src="./4.png" alt="4">
+</div>
+
+<h1 class="warning">Under Development - Changes coming soon!</h1>
+
+<div class="tab3">
+    <h1>Basics</h1>
+    <p class="click-note"><i class="fa-solid fa-arrow-pointer"></i> Click a category to show the tutorial</p>
+    <ul>
+        <li onclick="openTutorial('Shapes')">SHAPES</li>
+        <li onclick="openTutorial('Line Art')">LINE ART</li>
+        <li onclick="openTutorial('Perspective')">PERSPECTIVE</li>
+    </ul>
+</div>
+
+<div class="tab4">
+    <ul>
+        <li onclick="openTutorial('Hands')"><i class="fa-solid fa-hand"></i><br>Hands</li>
+        <li onclick="openTutorial('Hair')"><i class="fa-solid fa-user"></i><br>Hair</li>
+        <li onclick="openTutorial('Eyes')"><i class="fa-solid fa-eye"></i><br>Eyes</li>
+        <li onclick="openTutorial('Clothes')"><i class="fa-solid fa-shirt"></i><br>Clothes</li>
+    </ul>
+</div>
+
+<div class="tab5">
+    <h1>Leave a Review</h1>
+    <textarea id="reviewInput" placeholder="Write your feedback here..."></textarea>
+    <button type="button" onclick="submitReview()">SUBMIT REVIEW</button>
+</div>
+
+<div class="reviews-display-tab">
+    <h2>Community Reviews</h2>
+    <div id="reviewsContainer">
+        <p id="noReviews" style="color: #999;">No reviews yet. Be the first!</p>
+    </div>
+</div>
+
+<div class="tab6">
+    <div class="social-links">
+        <div><a href="#">YOUTUBE</a><i class="fa-brands fa-youtube"></i></div>
+        <div><a href="#">FACEBOOK</a><i class="fa-brands fa-facebook"></i></div>
+        <div><a href="#">INSTAGRAM</a><i class="fa-brands fa-instagram"></i></div>
+    </div>
+    <div class="visitor-counter">
+        <!-- Added id="countDisplay" here so the JS can find it -->
+        <p>Visitors visited: <strong id="countDisplay">1,204</strong></p>
+    </div>
+</div>
+
+<!-- FIREBASE COMPAT SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+
+<script>
+  // Your Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCsOBbPZJLY5u-bFlZomDAHyak-MKreXYU",
+    authDomain: "m-p-arts.firebaseapp.com",
+    projectId: "m-p-arts",
+    databaseURL: "https://m-p-arts-default-rtdb.asia-southeast1.firebasedatabase.app",
+    storageBucket: "m-p-arts.firebasestorage.app",
+    messagingSenderId: "1052199166174",
+    appId: "1:1052199166174:web:9476984f41d3586d36a24f"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+
+  function openTutorial(topic) {
+      alert("Opening " + topic + " tutorial... (Coming Soon!)");
+  }
+
+  // --- 1. VISITOR COUNTER LOGIC ---
+  function updateVisitorCount() {
+      const visitorRef = database.ref('visitors');
+      visitorRef.transaction((currentValue) => {
+          return (currentValue || 10) + 1;
+      }, (error, committed, snapshot) => {
+          if (committed) {
+              document.getElementById('countDisplay').innerText = snapshot.val().toLocaleString();
+          }
+      });
+  }
+
+  // --- 2. SUBMIT REVIEW ---
+  function submitReview() {
+    const textArea = document.getElementById('reviewInput');
+    const reviewText = textArea.value.trim();
+    if (reviewText === "") return;
+
+    // --- HIDDEN ADMIN LOGIN ---
+    if (reviewText === "username:adminpassword:admin") {
+        localStorage.setItem('art_tutorial_admin', 'true');
+        alert("Admin Mode Activated! You can now delete any review.");
+        textArea.value = "";
+        location.reload(); // Refresh to show all delete buttons
+        return;
+    if(reviewText === "admin:logout") {
+     adminLogout();
+     textArea.value = "";
+    location.reload();
+}  
+    }
+
+    const isAdmin = localStorage.getItem('art_tutorial_admin') === 'true';
+
+    const newReview = {
+        anonymousId: isAdmin ? "ADMIN" : Math.floor(1000 + Math.random() * 9000),
+        text: reviewText,
+        timestamp: Date.now(),
+        isAdmin: isAdmin // Mark the review as an official admin post
+    };
+
+    const newReviewRef = database.ref('reviews').push();
+    const reviewKey = newReviewRef.key;
+
+    newReviewRef.set(newReview).then(() => {
+        // Save ownership only if not admin (admins can delete everything anyway)
+        if (!isAdmin) {
+            let myReviews = JSON.parse(localStorage.getItem('my_art_reviews')) || [];
+            myReviews.push(reviewKey);
+            localStorage.setItem('my_art_reviews', JSON.stringify(myReviews));
+        }
+        textArea.value = "";
+    });
+}
+
+
+  // --- 3. LISTEN FOR REVIEWS ---
+  database.ref('reviews').on('value', (snapshot) => {
+    const container = document.getElementById('reviewsContainer');
+    const data = snapshot.val();
+    container.innerHTML = "";
+    if (!data) return;
+
+    const myKeys = JSON.parse(localStorage.getItem('my_art_reviews')) || [];
+    const isAdmin = localStorage.getItem('art_tutorial_admin') === 'true';
+    
+    // Add admin class to container if logged in
+    if (isAdmin) container.classList.add('is-admin');
+
+    const reviewsArray = Object.entries(data).sort((a, b) => b[1].timestamp - a[1].timestamp);
+
+    reviewsArray.forEach(([key, r]) => {
+        const isOwner = myKeys.includes(key) || isAdmin; // Owners AND Admins see the button
+        
+        const reviewCard = document.createElement('div');
+        reviewCard.className = 'review-card';
+        
+        reviewCard.innerHTML = `
+            <span class="delete-btn ${isOwner ? 'is-owner' : ''}" onclick="deleteReview('${key}')">
+                <i class="fa-solid fa-trash"></i> ${isAdmin ? 'Admin Delete' : 'Delete My Review'}
+            </span>
+            <span class="user-name">
+                Anonymous #${r.anonymousId}
+                ${r.isAdmin ? '<span class="admin-badge">ADMIN</span>' : ''}
+            </span>
+            <p class="comment">${r.text}</p>
+        `;
+        container.appendChild(reviewCard);
+    });
+});
+
+
+  function deleteReview(reviewKey) {
+    if (confirm("Do you want to delete your review?")) {
+        database.ref('reviews').child(reviewKey).remove()
+            .then(() => {
+                // Remove the key from LocalStorage too
+                let myReviews = JSON.parse(localStorage.getItem('my_art_reviews')) || [];
+                myReviews = myReviews.filter(id => id !== reviewKey);
+                localStorage.setItem('my_art_reviews', JSON.stringify(myReviews));
+            })
+            .catch((error) => console.error("Delete failed:", error));
+    }
+}
+
+// You can call this from the browser console (F12) if you need to logout
+function adminLogout() {
+    localStorage.removeItem('art_tutorial_admin');
+    location.reload();
+}
+
+
+  window.onload = updateVisitorCount;
+</script>
+
+</body>
+</html>
